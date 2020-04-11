@@ -1,7 +1,8 @@
 .tile {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -15,6 +16,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.tile_hint--multiple {
+  font-size: 0.8rem;
+}
+
+.tile > .tile__hint {
+  border-bottom: 1px solid black;
 }
 
 .tile__result {

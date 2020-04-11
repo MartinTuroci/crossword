@@ -1,64 +1,10 @@
 import React, { createRef } from 'react';
 import TileComponent from './Tile';
-import { TileType, Tile } from '../model/tile.model';
+import { TileType } from '../model/tile.model';
 import './Board.css';
+import { crossword } from '../util/crossword';
 
-const dummyBoard: Tile[] = [
-  {
-    text: 'Nejaka moja napoveda',
-    type: TileType.HINT,
-  },
-  {
-    text: '',
-    type: TileType.WRITEABLE,
-  },
-  {
-    text: '',
-    type: TileType.WRITEABLE,
-  },
-  {
-    text: '',
-    type: TileType.WRITEABLE,
-  },
-  {
-    text: '',
-    type: TileType.RESULT,
-  },
-  {
-    text: 'Napoveda',
-    type: TileType.HINT,
-  },
-  {
-    text: '',
-    type: TileType.WRITEABLE,
-  },
-  {
-    text: '',
-    type: TileType.WRITEABLE,
-  },
-  {
-    text: '',
-    type: TileType.WRITEABLE,
-  },
-  {
-    text: '',
-    type: TileType.WRITEABLE,
-  },
-  {
-    text: '',
-    type: TileType.WRITEABLE,
-  },
-  {
-    text: '',
-    type: TileType.WRITEABLE,
-  },
-  {
-    text: '',
-    type: TileType.WRITEABLE,
-  },
-];
-
-const boardWithRefs = dummyBoard.map((tile) => {
+const crosswordWithRefs = crossword.map((tile) => {
   if (tile.type === TileType.WRITEABLE || tile.type === TileType.RESULT) {
     tile.ref = createRef<HTMLInputElement>();
   }
@@ -66,11 +12,11 @@ const boardWithRefs = dummyBoard.map((tile) => {
 });
 
 const changeFocus = (index: number) => {
-  if (index + 1 >= boardWithRefs.length) {
+  if (index + 1 >= crosswordWithRefs.length) {
     return () => {};
   }
   return () => {
-    const tile = boardWithRefs[index + 1];
+    const tile = crosswordWithRefs[index + 1];
     if (tile.type === TileType.WRITEABLE || tile.type === TileType.RESULT) {
       tile.ref?.current?.focus();
     }
@@ -79,7 +25,7 @@ const changeFocus = (index: number) => {
 function Board() {
   return (
     <div className="board">
-      {boardWithRefs.map((tile, index) => (
+      {crosswordWithRefs.map((tile, index) => (
         <TileComponent
           key={index}
           tile={tile}
