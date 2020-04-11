@@ -1,0 +1,5 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  border: 1px solid #000;
+}
