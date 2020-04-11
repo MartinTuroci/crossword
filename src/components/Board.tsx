@@ -22,7 +22,7 @@ const dummyBoard: Tile[] = [
   },
   {
     text: '',
-    type: TileType.WRITEABLE,
+    type: TileType.RESULT,
   },
   {
     text: 'Napoveda',
@@ -59,7 +59,7 @@ const dummyBoard: Tile[] = [
 ];
 
 const boardWithRefs = dummyBoard.map((tile) => {
-  if (tile.type === TileType.WRITEABLE) {
+  if (tile.type === TileType.WRITEABLE || tile.type === TileType.RESULT) {
     tile.ref = createRef<HTMLInputElement>();
   }
   return tile;
@@ -71,7 +71,7 @@ const changeFocus = (index: number) => {
   }
   return () => {
     const tile = boardWithRefs[index + 1];
-    if (tile.type === TileType.WRITEABLE) {
+    if (tile.type === TileType.WRITEABLE || tile.type === TileType.RESULT) {
       tile.ref?.current?.focus();
     }
   };

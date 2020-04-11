@@ -1,6 +1,7 @@
 export enum TileType {
   HINT = 'hint',
   WRITEABLE = 'writable',
+  RESULT = 'result',
 }
 
 export interface Tile {
@@ -8,3 +9,8 @@ export interface Tile {
   type: TileType;
   ref?: React.RefObject<HTMLInputElement>;
 }
+
+export type TileProps = {
+  tile: Tile;
+  changeFocus: Function;
+};
