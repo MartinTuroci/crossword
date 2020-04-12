@@ -1,3 +1,15 @@
+:root {
+  --primary-color: rgb(0, 40, 70);
+  --secondary-color: rgb(255, 115, 115);
+  --gray-color: rgb(162, 170, 173);
+  --yellow-color: rgb(255, 255, 65);
+
+  --tile-height: 85px;
+  --tile-width: 85px;
+
+  --border-thickness: 0.5px;
+}
+
 .app-container {
   display: flex;
   align-items: center;
@@ -6,7 +18,7 @@
   min-height: 100vh;
 }
 footer {
-  padding: 3rem;
+  padding: 3rem 0;
   width: 100%;
   text-align: center;
 }

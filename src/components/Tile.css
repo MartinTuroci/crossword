@@ -1,16 +1,17 @@
 .tile {
-  width: 100px;
-  height: 100px;
+  width: var(--tile-width);
+  height: var(--tile-height);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: 0.5px solid #000;
+  border: var(--border-thickness) solid var(--primary-color);
 }
 
 .tile__hint {
-  background-color: olive;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
   height: 100%;
   width: 100%;
   display: flex;
@@ -21,12 +22,12 @@
   font-size: 0.8rem;
 }
 
-.tile > .tile__hint {
-  border-bottom: 1px solid black;
+.tile .tile__hint {
+  border: 1px solid var(--secondary-color);
 }
 
 .tile__result {
-  background-color: #fffc00;
+  background-color: var(--yellow-color);
 }
 
 .tile input {
@@ -34,13 +35,13 @@
   height: 100%;
   font-size: 2rem;
   text-align: center;
-  border: 0.5px solid #000;
+  border: var(--border-thickness) solid var(--primary-color);
   padding: 0;
 }
 
 .tile input:focus {
-  background-color: lightsteelblue;
-  border-color: lightsteelblue;
-  border: 0.5px solid #000;
+  background-color: var(--gray-color);
+  border-color: var(--gray-color);
+  border: var(--border-thickness) solid var(--primary-color);
   outline: none;
 }
