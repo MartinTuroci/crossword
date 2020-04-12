@@ -10,18 +10,8 @@ export interface Tile {
   ref?: React.RefObject<HTMLInputElement>;
 }
 
-// interface WriteableTile {
-//   text: string;
-//   type: TileType.WRITEABLE;
-//   ref: React.RefObject<HTMLInputElement>;
-// }
-
-// interface HintTile {
-//   text: string[];
-//   type: TileType.HINT;
-// }
-
 export type TileProps = {
   tile: Tile;
-  changeFocus: Function;
+  index: number;
+  setCurrentIndex: Function;
 };
