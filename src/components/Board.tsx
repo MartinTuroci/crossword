@@ -15,7 +15,7 @@ class Board extends React.Component<{}, BoardState> {
 
     this.state = {
       shouldFocusVertical: false,
-      currentIndex: -1,
+      currentIndex: 0,
     };
   }
 
