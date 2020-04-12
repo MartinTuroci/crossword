@@ -37,6 +37,7 @@
   text-align: center;
   border: var(--border-thickness) solid var(--primary-color);
   padding: 0;
+  text-transform: capitalize;
 }
 
 .tile input:focus {
