@@ -1122,3 +1122,5 @@ export const crossword: Tile[] = [
     type: TileType.WRITEABLE,
   },
 ];
+
+export const helpers = ['ARTAL', 'DINORA', 'PASAN', 'RAINIER', 'TUAN', 'TUF'];

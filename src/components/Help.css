@@ -1,0 +1,11 @@
+.help {
+  position: fixed;
+  top: 5rem;
+  left: 1rem;
+  padding: 1rem;
+}
+
+.help__list {
+  list-style: none;
+  padding: 0;
+}
