@@ -1,14 +1,26 @@
 import React, { createRef } from 'react';
 import TileComponent from './Tile';
-import { TileType } from '../model/tile.model';
+import { TileType, Tile } from '../model/tile.model';
 import './Board.css';
-import { crossword } from '../util/crossword';
 import Checkbox from './Checkbox';
+import Firebase from '../firebase';
 
 type BoardState = {
   shouldFocusVertical: boolean;
   currentIndex: number;
+  crossword: Tile[];
 };
+
+const normalize = (tile: Tile) => {
+  if (tile.type === TileType.WRITEABLE || tile.type === TileType.RESULT) {
+    tile.ref = createRef<HTMLInputElement>();
+  }
+  if (tile.type === TileType.HINT) {
+    tile.text = Object.values(tile.text).map((val) => val);
+  }
+  return tile;
+};
+
 class Board extends React.Component<{}, BoardState> {
   constructor(props: {}) {
     super(props);
@@ -16,15 +28,22 @@ class Board extends React.Component<{}, BoardState> {
     this.state = {
       shouldFocusVertical: false,
       currentIndex: 0,
+      crossword: [],
     };
   }
 
-  static crosswordWithRefs = crossword.map((tile) => {
-    if (tile.type === TileType.WRITEABLE || tile.type === TileType.RESULT) {
-      tile.ref = createRef<HTMLInputElement>();
+  componentDidMount() {
+    Firebase.setupChangeListener(this.boardUpdatedCallback);
+  }
+
+  boardUpdatedCallback = (snapshot: firebase.database.DataSnapshot) => {
+    const board = snapshot.toJSON();
+    if (board) {
+      this.setState({
+        crossword: Object.values(board).map(normalize),
+      });
     }
-    return tile;
-  });
+  };
 
   changeFocusVertical = (shouldFocusVertical: boolean) => {
     this.setState({ shouldFocusVertical });
@@ -44,7 +63,7 @@ class Board extends React.Component<{}, BoardState> {
   };
 
   focusCurrentTile = () => {
-    const tile = Board.crosswordWithRefs[this.state.currentIndex];
+    const tile = this.state.crossword[this.state.currentIndex];
 
     if (tile.type === TileType.WRITEABLE || tile.type === TileType.RESULT) {
       tile.ref?.current?.focus();
@@ -55,7 +74,7 @@ class Board extends React.Component<{}, BoardState> {
     return (
       <div>
         <div className="board">
-          {Board.crosswordWithRefs.map((tile, index) => (
+          {this.state.crossword.map((tile, index) => (
             <TileComponent
               key={index}
               tile={tile}
